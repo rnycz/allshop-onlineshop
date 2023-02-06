@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { FetchToProducts } from "../../assets/types";
 import { useStateContext } from "../../contexts/ContextProvider";
 import {
@@ -6,10 +6,8 @@ import {
   CurrentCategory,
   Categories,
   CategoryElement,
-  ShowFilters,
   CloseFilters,
 } from "./FiltersSidebar.styled";
-import { TbLayoutSidebarLeftExpand } from "react-icons/tb";
 import { GrFormClose } from "react-icons/gr";
 
 const FiltersSidebar: React.FC<FetchToProducts> = ({
@@ -17,47 +15,43 @@ const FiltersSidebar: React.FC<FetchToProducts> = ({
   categoriesLoading,
   categoriesError,
 }) => {
-  const { category, setCategory } = useStateContext();
-  const [openFilters, setOpenFilters] = useState<boolean>(false);
+  const { category, setCategory, openFilters, setOpenFilters } =
+    useStateContext();
+
   return (
-    <>
-      <ShowFilters>
-        <TbLayoutSidebarLeftExpand onClick={() => setOpenFilters(true)} />
-      </ShowFilters>
-      <FiltersContainer className={openFilters ? "active" : ""}>
-        <CloseFilters>
-          <GrFormClose onClick={() => setOpenFilters(false)} />
-        </CloseFilters>
-        <CurrentCategory>
-          Current category: <p>{category}</p>
-        </CurrentCategory>
-        <Categories>
-          <div style={{ direction: "ltr" }}>
-            {categoriesLoading && <span>Loading categories...</span>}
-            {categoriesError && <span>{categoriesError}</span>}
-            <CategoryElement
-              onClick={() => {
-                setCategory("all");
-              }}
-            >
-              ALL
-            </CategoryElement>
-            {categoriesData &&
-              categoriesData.map((category: string, index: number) => (
-                <CategoryElement
-                  key={index}
-                  onClick={() => {
-                    setCategory(category.toLowerCase());
-                    setOpenFilters(false);
-                  }}
-                >
-                  {category}
-                </CategoryElement>
-              ))}
-          </div>
-        </Categories>
-      </FiltersContainer>
-    </>
+    <FiltersContainer className={openFilters ? "active" : ""}>
+      <CloseFilters>
+        <GrFormClose onClick={() => setOpenFilters(false)} />
+      </CloseFilters>
+      <CurrentCategory>
+        Current category: <p>{category}</p>
+      </CurrentCategory>
+      <Categories>
+        <div style={{ direction: "ltr" }}>
+          {categoriesLoading && <span>Loading categories...</span>}
+          {categoriesError && <span>{categoriesError}</span>}
+          <CategoryElement
+            onClick={() => {
+              setCategory("all");
+            }}
+          >
+            ALL
+          </CategoryElement>
+          {categoriesData &&
+            categoriesData.map((category: string, index: number) => (
+              <CategoryElement
+                key={index}
+                onClick={() => {
+                  setCategory(category.toLowerCase());
+                  setOpenFilters(false);
+                }}
+              >
+                {category}
+              </CategoryElement>
+            ))}
+        </div>
+      </Categories>
+    </FiltersContainer>
   );
 };
 

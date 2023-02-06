@@ -4,6 +4,7 @@ import Header from "./components/Header/Header";
 import { useFetch } from "./hooks/useFetch";
 import HomePage from "./pages/HomePage/HomePage";
 import ProductsPage from "./pages/Products/ProductsPage";
+import ShoppingCartSidebar from "./components/ShoppingCart/ShoppingCartSidebar";
 
 function App() {
   const {
@@ -51,6 +52,7 @@ function App() {
             }
           />
         </Routes>
+        <ShoppingCartSidebar />
       </div>
     </BrowserRouter>
   );

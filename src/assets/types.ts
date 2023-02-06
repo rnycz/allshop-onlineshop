@@ -11,6 +11,7 @@ export type Product = {
   stock: number;
   brand: string;
   images: string[];
+  quantity: number;
 };
 export type Category = {
   [x: string]: any;

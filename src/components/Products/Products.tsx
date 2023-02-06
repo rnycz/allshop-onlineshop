@@ -16,12 +16,18 @@ const Products: React.FC<FetchToProducts> = ({
       {productsError && <span>{productsError}</span>}
       {category === "all"
         ? productsData?.products.map((product: Product) => (
-            <ProductsCard key={product.id} product={product} />
+            <ProductsCard
+              key={product.id}
+              product={{ ...product, quantity: 1 }}
+            />
           ))
         : productsData?.products.map(
             (product: Product) =>
               product.category === category && (
-                <ProductsCard key={product.id} product={product} />
+                <ProductsCard
+                  key={product.id}
+                  product={{ ...product, quantity: 1 }}
+                />
               )
           )}
     </ProductsWrapper>

@@ -9,7 +9,7 @@ import {
   ProductInfo,
   MoreInfo,
 } from "./ProductsCard.styled";
-import { MdAddShoppingCart } from "react-icons/md";
+import { MdAddShoppingCart, MdOutlineRemoveShoppingCart } from "react-icons/md";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import { useStateContext } from "../../../contexts/ContextProvider";
 
@@ -19,6 +19,9 @@ type Props = {
 
 const ProductsCard: React.FC<Props> = ({ product }) => {
   const { shoppingCart, setShoppingCart } = useStateContext();
+  const removeProduct = (id: number) => {
+    setShoppingCart(shoppingCart.filter((product) => product.id !== id));
+  };
   return (
     <Card>
       <MoreInfo>
@@ -28,9 +31,17 @@ const ProductsCard: React.FC<Props> = ({ product }) => {
       <Title>{product.title}</Title>
       <ProductInfo>
         <Price>${product.price}</Price>
-        <AddToCart onClick={() => setShoppingCart([...shoppingCart, product])}>
-          <MdAddShoppingCart />
-        </AddToCart>
+        {shoppingCart.some((productCart) => productCart.id === product.id) ? (
+          <AddToCart onClick={() => removeProduct(product.id)}>
+            <MdOutlineRemoveShoppingCart />
+          </AddToCart>
+        ) : (
+          <AddToCart
+            onClick={() => setShoppingCart([...shoppingCart, product])}
+          >
+            <MdAddShoppingCart />
+          </AddToCart>
+        )}
       </ProductInfo>
     </Card>
   );

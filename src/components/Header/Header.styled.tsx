@@ -24,7 +24,7 @@ export const Navbar = styled.nav`
   justify-content: center;
   align-items: center;
   gap: 20px;
-  @media (max-width: 500px) {
+  @media (max-width: 520px) {
     a:not(:nth-child(1)) {
       display: none;
     }
@@ -35,13 +35,14 @@ export const UserTab = styled.div`
   font-size: 1.5em;
   gap: 20px;
   padding-right: 20px;
-  @media (max-width: 500px) {
+  @media (max-width: 520px) {
     display: none;
   }
 `;
 export const ShoppingCart = styled.div`
   position: relative;
   cursor: pointer;
+  display: flex;
   span {
     position: absolute;
     top: -10px;
@@ -56,32 +57,42 @@ export const ShoppingCart = styled.div`
     justify-content: center;
     align-items: center;
   }
-  @media (max-width: 500px) {
+  @media (max-width: 520px) {
     span {
-      top: 20px;
-      right: 2px;
+      top: 19px;
+      right: 3px;
       font-size: 0.8em;
       width: 20px;
       height: 20px;
     }
   }
 `;
+export const ShowFilters = styled.div`
+  display: none;
+  svg {
+    cursor: pointer;
+  }
+  @media (max-width: 780px) {
+    display: flex;
+  }
+`;
 export const OpenResponsiveNavbar = styled.div`
   font-size: 1.5em;
   padding-right: 20px;
-  @media (min-width: 501px) {
+  @media (min-width: 521px) {
     display: none;
   }
 `;
 export const ResponsiveNavbar = styled.div`
   background-color: white;
   display: flex;
+  flex-flow: row wrap;
   width: 100%;
   justify-content: center;
   align-items: center;
   position: fixed;
   left: 0;
-  top: 0;
+  top: -20px;
   transition: 0.3s;
   box-shadow: 0 4px 2px 0px #e5e5e5;
   z-index: 3;
@@ -102,7 +113,7 @@ export const ResponsiveNavbar = styled.div`
     top: 63px;
     transition: 0.3s;
   }
-  @media (min-width: 501px) {
+  @media (min-width: 521px) {
     display: none;
   }
 `;

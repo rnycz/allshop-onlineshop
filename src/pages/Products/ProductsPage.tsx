@@ -2,9 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { FetchToProducts } from "../../assets/types";
 import FiltersSidebar from "../../components/FiltersSidebar/FiltersSidebar";
-import { ShoppingCart } from "../../components/Header/Header.styled";
 import Products from "../../components/Products/Products";
-import ShoppingCartSidebar from "../../components/ShoppingCart/ShoppingCartSidebar";
 
 const ProductsContainer = styled.div`
   display: flex;
@@ -32,7 +30,6 @@ const ProductsPage: React.FC<FetchToProducts> = ({
         productsLoading={productsLoading}
         productsError={productsError}
       />
-      <ShoppingCartSidebar />
     </ProductsContainer>
   );
 };

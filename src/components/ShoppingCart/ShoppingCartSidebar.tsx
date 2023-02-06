@@ -2,37 +2,94 @@ import React from "react";
 import { useStateContext } from "../../contexts/ContextProvider";
 import {
   ShoppingCartContainer,
-  Product,
+  SingleProduct,
   ProductsContainer,
   ProductDetails,
+  TotalSum,
+  Quantity,
 } from "./ShoppingCartSidebar.styled";
 import { FiTrash2 } from "react-icons/fi";
+import { GrFormClose } from "react-icons/gr";
+import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
+import { Product } from "../../assets/types";
 
 const ShoppingCartSidebar: React.FC = () => {
-  const { openShoppingCart, shoppingCart, setShoppingCart } = useStateContext();
+  const {
+    openShoppingCart,
+    setOpenShoppingCart,
+    shoppingCart,
+    setShoppingCart,
+  } = useStateContext();
+
+  const stepDown = (id: number) => {
+    setShoppingCart(
+      shoppingCart.map((product) =>
+        product.id === id
+          ? product.quantity === 1
+            ? product
+            : { ...product, quantity: product.quantity - 1 }
+          : product
+      )
+    );
+  };
+  const stepUp = (id: number) => {
+    setShoppingCart(
+      shoppingCart.map((product) =>
+        product.id === id
+          ? { ...product, quantity: product.quantity + 1 }
+          : product
+      )
+    );
+  };
+
   const removeProduct = (id: number) => {
     setShoppingCart(shoppingCart.filter((product) => product.id !== id));
   };
+
+  let totalSum = shoppingCart.reduce((prev, product) => {
+    return prev + product.price * product.quantity;
+  }, 0);
   return (
     <ShoppingCartContainer className={openShoppingCart ? "active" : ""}>
-      <h3>Your shopping cart</h3>
+      <header>
+        <GrFormClose
+          onClick={() => {
+            setOpenShoppingCart(false);
+          }}
+          style={{
+            fontSize: "2em",
+            cursor: "pointer",
+          }}
+        />
+        <h2>Your shopping cart</h2>
+      </header>
       <ProductsContainer>
-        {shoppingCart.map((product) => (
-          <Product>
-            <img
-              src={product.thumbnail}
-              alt={`product image ${product.thumbnail}`}
-            />
+        {shoppingCart.map((product: Product) => (
+          <SingleProduct key={product.id}>
+            <img src={product.thumbnail} alt={`product ${product.thumbnail}`} />
             <ProductDetails>
-              <h4>{product.title}</h4>
-              <p>${product.price}</p>
+              <h3>{product.title}</h3>
+              <p>
+                ${product.price}
+                <span>SUM: ${product.price * product.quantity}</span>
+              </p>
               <div>
                 <FiTrash2 onClick={() => removeProduct(product.id)} />
+                <Quantity>
+                  <button onClick={() => stepDown(product.id)}>
+                    <AiOutlineMinus />
+                  </button>
+                  <span>{product.quantity}</span>
+                  <button onClick={() => stepUp(product.id)}>
+                    <AiOutlinePlus />
+                  </button>
+                </Quantity>
               </div>
             </ProductDetails>
-          </Product>
+          </SingleProduct>
         ))}
       </ProductsContainer>
+      <TotalSum>{totalSum !== 0 ? `Total: $${totalSum}` : ""}</TotalSum>
     </ShoppingCartContainer>
   );
 };

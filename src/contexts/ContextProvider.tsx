@@ -11,6 +11,8 @@ type ContextState = {
   setShoppingCart: React.Dispatch<React.SetStateAction<Product[]>>;
   openShoppingCart: boolean;
   setOpenShoppingCart: React.Dispatch<React.SetStateAction<boolean>>;
+  openFilters: boolean;
+  setOpenFilters: React.Dispatch<React.SetStateAction<boolean>>;
 };
 const contextDefaultValues: ContextState = {
   category: "all",
@@ -19,6 +21,8 @@ const contextDefaultValues: ContextState = {
   setShoppingCart: () => {},
   openShoppingCart: false,
   setOpenShoppingCart: () => {},
+  openFilters: false,
+  setOpenFilters: () => {},
 };
 
 export const StateContext = createContext<ContextState>(contextDefaultValues);
@@ -33,6 +37,9 @@ export const ContextProvider: React.FC<Props> = ({ children }) => {
   const [openShoppingCart, setOpenShoppingCart] = useState<boolean>(
     contextDefaultValues.openShoppingCart
   );
+  const [openFilters, setOpenFilters] = useState<boolean>(
+    contextDefaultValues.openFilters
+  );
   return (
     <StateContext.Provider
       value={{
@@ -42,6 +49,8 @@ export const ContextProvider: React.FC<Props> = ({ children }) => {
         setShoppingCart,
         openShoppingCart,
         setOpenShoppingCart,
+        openFilters,
+        setOpenFilters,
       }}
     >
       {children}

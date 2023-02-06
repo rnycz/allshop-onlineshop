@@ -17,20 +17,6 @@ export const FiltersContainer = styled.div`
     }
   }
 `;
-export const ShowFilters = styled.div`
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  display: none;
-  z-index: 2;
-  svg {
-    font-size: 2em;
-    cursor: pointer;
-  }
-  @media (max-width: 780px) {
-    display: block;
-  }
-`;
 export const CloseFilters = styled.div`
   position: absolute;
   top: 5px;

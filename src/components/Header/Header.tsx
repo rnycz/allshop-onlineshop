@@ -6,9 +6,14 @@ import {
   ResponsiveNavbar,
   ShoppingCart,
   UserTab,
+  ShowFilters,
 } from "./Header.styled";
 import { AiOutlineUser, AiOutlineShoppingCart } from "react-icons/ai";
-import { NavLink, Link } from "react-router-dom";
+import {
+  TbLayoutSidebarLeftExpand,
+  TbLayoutSidebarLeftCollapse,
+} from "react-icons/tb";
+import { NavLink, Link, useLocation } from "react-router-dom";
 import { Divide as Hamburger } from "hamburger-react";
 import { useStateContext } from "../../contexts/ContextProvider";
 
@@ -16,8 +21,14 @@ const Header: React.FC = () => {
   const activeStyle = {
     textDecoration: "underline",
   };
-  const { shoppingCart, setOpenShoppingCart, openShoppingCart } =
-    useStateContext();
+  const location = useLocation();
+  const {
+    shoppingCart,
+    setOpenShoppingCart,
+    openShoppingCart,
+    setOpenFilters,
+    openFilters,
+  } = useStateContext();
   const [openResponsiveMenu, setOpenResponsiveMenu] = useState<boolean>(false);
   return (
     <div style={{ position: "relative" }}>
@@ -40,6 +51,21 @@ const Header: React.FC = () => {
           </NavLink>
         </Navbar>
         <UserTab>
+          <ShowFilters>
+            {location.pathname === "/products" ? (
+              openFilters ? (
+                <TbLayoutSidebarLeftCollapse
+                  onClick={() => setOpenFilters(false)}
+                />
+              ) : (
+                <TbLayoutSidebarLeftExpand
+                  onClick={() => setOpenFilters(true)}
+                />
+              )
+            ) : (
+              ""
+            )}
+          </ShowFilters>
           <ShoppingCart onClick={() => setOpenShoppingCart(!openShoppingCart)}>
             <AiOutlineShoppingCart />
             {shoppingCart.length > 0 && <span>{shoppingCart.length}</span>}
@@ -70,6 +96,27 @@ const Header: React.FC = () => {
         >
           Contact
         </NavLink>
+        <ShowFilters>
+          {location.pathname === "/products" ? (
+            openFilters ? (
+              <TbLayoutSidebarLeftCollapse
+                onClick={() => {
+                  setOpenFilters(false);
+                  setOpenResponsiveMenu(false);
+                }}
+              />
+            ) : (
+              <TbLayoutSidebarLeftExpand
+                onClick={() => {
+                  setOpenFilters(true);
+                  setOpenResponsiveMenu(false);
+                }}
+              />
+            )
+          ) : (
+            ""
+          )}
+        </ShowFilters>
         <ShoppingCart
           onClick={() => {
             setOpenShoppingCart(!openShoppingCart);
