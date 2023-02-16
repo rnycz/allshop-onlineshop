@@ -12,6 +12,7 @@ import {
 import { MdAddShoppingCart, MdOutlineRemoveShoppingCart } from "react-icons/md";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import { useStateContext } from "../../../contexts/ContextProvider";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   product: Product;
@@ -22,9 +23,10 @@ const ProductsCard: React.FC<Props> = ({ product }) => {
   const removeProduct = (id: number) => {
     setShoppingCart(shoppingCart.filter((product) => product.id !== id));
   };
+  const navigate = useNavigate();
   return (
     <Card>
-      <MoreInfo>
+      <MoreInfo onClick={() => navigate(`/product/${product.id}`)}>
         <AiOutlineInfoCircle style={{ padding: "3px" }} />
       </MoreInfo>
       <Image src={product.thumbnail} />

@@ -7,7 +7,6 @@ import Products from "../../components/Products/Products";
 const ProductsContainer = styled.div`
   display: flex;
   position: relative;
-  margin-top: 70px;
 `;
 
 const ProductsPage: React.FC<FetchToProducts> = ({

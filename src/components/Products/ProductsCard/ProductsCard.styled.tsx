@@ -50,6 +50,7 @@ export const MoreInfo = styled.div`
   justify-content: flex-end;
   align-items: flex-start;
   transition: 0.6s all;
+  cursor: pointer;
   svg {
     transition: 0.6s all;
   }
@@ -59,6 +60,7 @@ export const Card = styled.div`
   flex-direction: column;
   justify-content: space-between;
   width: 250px;
+  max-height: 380px;
   background-color: #ffffff;
   border-radius: 10px;
   margin: 20px;
@@ -68,12 +70,12 @@ export const Card = styled.div`
   }
   &:hover {
     ${MoreInfo} {
-      width: 55px;
-      height: 55px;
+      width: 50px;
+      height: 50px;
       transition: 0.6s all;
       svg {
         transition: 0.6s all;
-        transform: translate(-7px, 7px) scale(1.3);
+        transform: translate(-5px, 5px) scale(1.3);
       }
     }
   }

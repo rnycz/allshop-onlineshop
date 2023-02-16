@@ -3,8 +3,10 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./components/Header/Header";
 import { useFetch } from "./hooks/useFetch";
 import HomePage from "./pages/HomePage/HomePage";
-import ProductsPage from "./pages/Products/ProductsPage";
+import ProductsPage from "./pages/ProductsPage/ProductsPage";
 import ShoppingCartSidebar from "./components/ShoppingCart/ShoppingCartSidebar";
+import ProductsInfoPage from "./pages/ProductsInfoPage/ProductsInfoPage";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   const {
@@ -27,7 +29,9 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Header />
+
         <Routes>
+          <Route path="/product/:id" element={<ProductsInfoPage />} />
           <Route
             path="/"
             element={
@@ -53,6 +57,7 @@ function App() {
           />
         </Routes>
         <ShoppingCartSidebar />
+        <Footer />
       </div>
     </BrowserRouter>
   );

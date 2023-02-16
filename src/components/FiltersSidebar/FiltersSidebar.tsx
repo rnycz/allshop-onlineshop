@@ -33,20 +33,23 @@ const FiltersSidebar: React.FC<FetchToProducts> = ({
           <CategoryElement
             onClick={() => {
               setCategory("all");
+              setOpenFilters(false);
             }}
+            className={category === "all" ? "active" : ""}
           >
             ALL
           </CategoryElement>
           {categoriesData &&
-            categoriesData.map((category: string, index: number) => (
+            categoriesData.map((categoryData: string, index: number) => (
               <CategoryElement
                 key={index}
                 onClick={() => {
-                  setCategory(category.toLowerCase());
+                  setCategory(categoryData.toLowerCase());
                   setOpenFilters(false);
                 }}
+                className={category === categoryData ? "active" : ""}
               >
-                {category}
+                {categoryData}
               </CategoryElement>
             ))}
         </div>

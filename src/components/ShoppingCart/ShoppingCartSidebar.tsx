@@ -7,9 +7,11 @@ import {
   ProductDetails,
   TotalSum,
   Quantity,
+  Checkout,
 } from "./ShoppingCartSidebar.styled";
 import { FiTrash2 } from "react-icons/fi";
 import { GrFormClose } from "react-icons/gr";
+import { BsBagCheck } from "react-icons/bs";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 import { Product } from "../../assets/types";
 
@@ -90,6 +92,9 @@ const ShoppingCartSidebar: React.FC = () => {
         ))}
       </ProductsContainer>
       <TotalSum>{totalSum !== 0 ? `Total: $${totalSum}` : ""}</TotalSum>
+      <Checkout>
+        <BsBagCheck /> Checkout
+      </Checkout>
     </ShoppingCartContainer>
   );
 };

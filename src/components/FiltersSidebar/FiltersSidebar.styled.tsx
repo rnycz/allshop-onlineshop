@@ -8,6 +8,7 @@ export const FiltersContainer = styled.div`
   transition: 0.3s;
   @media (max-width: 780px) {
     position: fixed;
+    top: 0;
     left: -100%;
     height: 100vh;
     &.active {
@@ -19,7 +20,7 @@ export const FiltersContainer = styled.div`
 `;
 export const CloseFilters = styled.div`
   position: absolute;
-  top: 5px;
+  top: 70px;
   right: 5px;
   display: none;
   svg {
@@ -40,14 +41,13 @@ export const CurrentCategory = styled.div`
     text-transform: uppercase;
   }
   @media (max-width: 780px) {
-    margin-top: 20px;
+    margin-top: 90px;
   }
 `;
 export const Categories = styled.div`
   height: 500px;
   overflow: auto;
   direction: rtl;
-  padding: 0 10px;
   &::-webkit-scrollbar {
     width: 5px;
   }
@@ -65,8 +65,13 @@ export const Categories = styled.div`
 export const CategoryElement = styled.p`
   text-transform: uppercase;
   cursor: pointer;
-  margin: 25px 0;
+  margin: 15px 0;
+  padding: 5px 10px;
   &:hover {
     font-weight: bold;
+  }
+  &.active {
+    font-weight: bold;
+    background-color: #eec790;
   }
 `;

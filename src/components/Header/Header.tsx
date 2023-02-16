@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   HeaderStyle,
   Navbar,
@@ -19,9 +19,12 @@ import { useStateContext } from "../../contexts/ContextProvider";
 
 const Header: React.FC = () => {
   const activeStyle = {
-    textDecoration: "underline",
+    fontWeight: "bold",
+    backgroundColor: "#eec790",
   };
+
   const location = useLocation();
+
   const {
     shoppingCart,
     setOpenShoppingCart,
@@ -29,9 +32,28 @@ const Header: React.FC = () => {
     setOpenFilters,
     openFilters,
   } = useStateContext();
+
   const [openResponsiveMenu, setOpenResponsiveMenu] = useState<boolean>(false);
+
+  const listenToScroll = (): void => {
+    const heightToHideMobileNav: number = 40;
+    const winScroll: number =
+      document.body.scrollTop || document.documentElement.scrollTop;
+
+    if (winScroll < heightToHideMobileNav) {
+      openResponsiveMenu && setOpenResponsiveMenu(true);
+    } else {
+      setOpenResponsiveMenu(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", listenToScroll);
+    return () => window.removeEventListener("scroll", listenToScroll);
+  }, []);
+
   return (
-    <div style={{ position: "relative" }}>
+    <>
       <HeaderStyle>
         <Navbar>
           <Link to="">
@@ -128,7 +150,7 @@ const Header: React.FC = () => {
         </ShoppingCart>
         <AiOutlineUser />
       </ResponsiveNavbar>
-    </div>
+    </>
   );
 };
 

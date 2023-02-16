@@ -2,7 +2,7 @@ import styled from "styled-components";
 import image from "../../assets/images/bg-img.jpg";
 
 export const CategoriesStyle = styled.div`
-  height: 100vh;
+  height: 100%;
   background: url(${image}) no-repeat center center fixed;
   background-size: cover;
   position: relative;

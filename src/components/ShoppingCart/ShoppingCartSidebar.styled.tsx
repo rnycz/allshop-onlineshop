@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const ShoppingCartContainer = styled.div`
   position: fixed;
-  top: 70px;
+  top: 0px;
   right: 0px;
   transform: translateX(102%);
   display: flex;
@@ -22,6 +22,7 @@ export const ShoppingCartContainer = styled.div`
     display: flex;
     align-items: center;
     gap: 10px;
+    margin-top: 50px;
   }
 `;
 export const ProductsContainer = styled.div`
@@ -107,8 +108,24 @@ export const SingleProduct = styled.div`
   }
 `;
 export const TotalSum = styled.div`
-  margin-top: 10px;
+  margin-top: 15px;
   text-align: center;
   font-weight: bold;
   font-size: 1.1em;
+`;
+export const Checkout = styled.button`
+  border: none;
+  width: fit-content;
+  padding: 10px 20px;
+  background-color: #eec790;
+  border-radius: 30px;
+  font-size: 1.2em;
+  display: flex;
+  gap: 8px;
+  margin: 15px auto 5px auto;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  &:hover {
+    background-color: #f2d2a6;
+  }
 `;

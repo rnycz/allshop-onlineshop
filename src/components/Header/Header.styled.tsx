@@ -5,25 +5,27 @@ export const HeaderStyle = styled.header`
   justify-content: space-between;
   align-items: center;
   background-color: white;
-  position: fixed;
   z-index: 4;
   font-size: 1.1em;
   width: 100%;
-  a {
-    text-decoration: none;
-    color: black;
-    line-height: 1.5em;
-    text-underline-offset: 5px;
-    &:nth-child(1) {
-      padding-left: 20px;
-    }
-  }
 `;
 export const Navbar = styled.nav`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 15px;
+  a {
+    text-decoration: none;
+    color: black;
+    text-underline-offset: 5px;
+    line-height: 1.5em;
+    &:not(:nth-child(1)) {
+      padding: 0 5px;
+    }
+    &:nth-child(1) {
+      padding-left: 20px;
+    }
+  }
   @media (max-width: 520px) {
     a:not(:nth-child(1)) {
       display: none;
@@ -92,13 +94,14 @@ export const ResponsiveNavbar = styled.div`
   align-items: center;
   position: fixed;
   left: 0;
-  top: -20px;
+  top: -90px;
   transition: 0.3s;
   box-shadow: 0 4px 2px 0px #e5e5e5;
   z-index: 3;
   a,
   svg {
-    padding: 10px 15px;
+    margin: 7px 10px;
+    padding: 3px 5px;
   }
   a {
     text-decoration: none;
@@ -110,7 +113,9 @@ export const ResponsiveNavbar = styled.div`
     font-size: 1.4em;
   }
   &.active {
-    top: 63px;
+    background-color: white;
+    padding-top: 70px;
+    top: 0;
     transition: 0.3s;
   }
   @media (min-width: 521px) {
