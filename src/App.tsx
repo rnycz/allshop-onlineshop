@@ -7,6 +7,7 @@ import ProductsPage from "./pages/ProductsPage/ProductsPage";
 import ShoppingCartSidebar from "./components/ShoppingCart/ShoppingCartSidebar";
 import ProductsInfoPage from "./pages/ProductsInfoPage/ProductsInfoPage";
 import Footer from "./components/Footer/Footer";
+import SignUp from "./components/SignUp/SignUp";
 
 function App() {
   const {
@@ -24,6 +25,7 @@ function App() {
   useEffect(() => {
     categoriesFetchData();
     productsFetchData();
+    // eslint-disable-next-line
   }, []);
   return (
     <BrowserRouter>
@@ -55,6 +57,7 @@ function App() {
               />
             }
           />
+          <Route path="/signup" element={<SignUp />} />
         </Routes>
         <ShoppingCartSidebar />
         <Footer />

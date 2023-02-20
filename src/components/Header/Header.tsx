@@ -13,7 +13,7 @@ import {
   TbLayoutSidebarLeftExpand,
   TbLayoutSidebarLeftCollapse,
 } from "react-icons/tb";
-import { NavLink, Link, useLocation } from "react-router-dom";
+import { NavLink, Link, useLocation, useNavigate } from "react-router-dom";
 import { Divide as Hamburger } from "hamburger-react";
 import { useStateContext } from "../../contexts/ContextProvider";
 
@@ -24,6 +24,7 @@ const Header: React.FC = () => {
   };
 
   const location = useLocation();
+  const navigate = useNavigate();
 
   const {
     shoppingCart,
@@ -50,6 +51,7 @@ const Header: React.FC = () => {
   useEffect(() => {
     window.addEventListener("scroll", listenToScroll);
     return () => window.removeEventListener("scroll", listenToScroll);
+    // eslint-disable-next-line
   }, []);
 
   return (
@@ -88,11 +90,18 @@ const Header: React.FC = () => {
               ""
             )}
           </ShowFilters>
-          <ShoppingCart onClick={() => setOpenShoppingCart(!openShoppingCart)}>
+          <ShoppingCart
+            onClick={() => setOpenShoppingCart(!openShoppingCart)}
+            role="button"
+          >
             <AiOutlineShoppingCart />
             {shoppingCart.length > 0 && <span>{shoppingCart.length}</span>}
           </ShoppingCart>
-          <AiOutlineUser />
+          <AiOutlineUser
+            role="button"
+            style={{ cursor: "pointer" }}
+            onClick={() => navigate("/signup")}
+          />
         </UserTab>
         <OpenResponsiveNavbar
           onClick={() => setOpenResponsiveMenu(!openResponsiveMenu)}
@@ -148,7 +157,14 @@ const Header: React.FC = () => {
           <AiOutlineShoppingCart />
           {shoppingCart.length > 0 && <span>{shoppingCart.length}</span>}
         </ShoppingCart>
-        <AiOutlineUser />
+        <AiOutlineUser
+          role="button"
+          style={{ cursor: "pointer" }}
+          onClick={() => {
+            navigate("/signup");
+            setOpenResponsiveMenu(false);
+          }}
+        />
       </ResponsiveNavbar>
     </>
   );

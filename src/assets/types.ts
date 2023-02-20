@@ -29,3 +29,10 @@ export type FetchToProducts = {
   categoriesLoading?: boolean;
   categoriesError?: string;
 };
+
+export type User = {
+  username: string;
+  email: string;
+  password: string;
+  phone: string;
+};

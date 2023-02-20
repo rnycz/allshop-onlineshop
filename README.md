@@ -2,10 +2,11 @@
 
 Online shop made using React (React Router, Context API), TypeScript, styled-components <br />
 Products data from [DummyJSON](https://dummyjson.com/)<br />
+REST API using [json-server](https://www.npmjs.com/package/json-server) and [json-server-auth](https://www.npmjs.com/package/json-server-auth)<br />
 TODO:
 
 - Checkout Page
-- User can register and login
+- User can register (already done) and login
 
   Work in progress...
 
@@ -51,3 +52,5 @@ Product Info Page <br />
 ![](./src/assets/images/app-screen3.PNG) <br />
 Shopping Cart Sidebar <br />
 ![](./src/assets/images/app-screen4.PNG) <br />
+Sign Up Form <br />
+![](./src/assets/images/app-screen5.PNG) <br />

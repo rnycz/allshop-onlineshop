@@ -51,6 +51,7 @@ const ShoppingCartSidebar: React.FC = () => {
   let totalSum = shoppingCart.reduce((prev, product) => {
     return prev + product.price * product.quantity;
   }, 0);
+
   return (
     <ShoppingCartContainer className={openShoppingCart ? "active" : ""}>
       <header>
@@ -91,10 +92,16 @@ const ShoppingCartSidebar: React.FC = () => {
           </SingleProduct>
         ))}
       </ProductsContainer>
-      <TotalSum>{totalSum !== 0 ? `Total: $${totalSum}` : ""}</TotalSum>
-      <Checkout>
-        <BsBagCheck /> Checkout
-      </Checkout>
+      {totalSum !== 0 ? (
+        <>
+          <TotalSum>{`Total: $${totalSum}`}</TotalSum>
+          <Checkout>
+            <BsBagCheck /> Checkout
+          </Checkout>
+        </>
+      ) : (
+        <p>The shopping cart is empty. Add products to your cart.</p>
+      )}
     </ShoppingCartContainer>
   );
 };

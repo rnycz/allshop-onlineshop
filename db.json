@@ -1,0 +1,12 @@
+{
+  "users": [
+    {
+      "email": "test@test.com",
+      "password": "$2a$10$uzg/xRSLIwsEyOL3MH7S5ubxFhuX6tnvS6lIm.WmVCd7EM/KaKzNi",
+      "username": "test",
+      "phone": "123123123",
+      "rules": true,
+      "id": 1
+    }
+  ]
+}

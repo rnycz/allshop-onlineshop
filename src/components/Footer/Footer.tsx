@@ -5,7 +5,7 @@ const Footer: React.FC = () => {
   return (
     <FooterStyle>
       {new Date().getFullYear()}
-      <a href="https://radeknycz.netlify.app/" target="_blank">
+      <a href="https://radeknycz.netlify.app/" target="_blank" rel="noreferrer">
         Radosław Nycz
       </a>
     </FooterStyle>
